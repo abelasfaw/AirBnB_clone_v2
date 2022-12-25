@@ -35,16 +35,26 @@ def do_deploy(archive_path):
     if result.failed:
         return False
     result = run("tar -zxvf {} -C {}".format(remote_archive_path, uncompressed_folder))
-    if (result.failed):
+    if result.failed:
         return False
     result = sudo("rm -f {}".format(remote_archive_path))
-    if (result.failed):
+    if result.failed:
         return False
-    result = sudo("rm -f /data/web_static/current")
-    if (result.failed):
-        return False
+    uncompressed_files = "{}/web_static/*".format(uncompressed_folder)
+    print("uncompressed files: {}".format(uncompressed_files))
+    result = sudo("mv {} {}".format(uncompressed_files, uncompressed_folder))
+    if result.failed:
+    	return False
+    web_static_folder = "{}/web_static".format(uncompressed_folder)
+    print("Web static folder: {}".format(web_static_folder))
+    result = sudo("rm -rf {}".format(web_static_folder))
+    if result.failed:
+    	return False
+    result = sudo("rm -rf /data/web_static/current")
+    if result.failed:
+    	return False
     result = sudo("ln -s {} /data/web_static/current".format(uncompressed_folder))
-    if (result.failed):
-        return False
+    if result.failed:
+    	return False
     return True
 
