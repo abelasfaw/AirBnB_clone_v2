@@ -7,9 +7,8 @@ apt-get -y install nginx
 #allow Nginx
 ufw allow 'Nginx HTTP'
 #create project folders
-mkdir -p /data/web_static/
-mkdir -p /data/web_static/releases/test/
 mkdir -p /data/web_static/shared/
+mkdir -p /data/web_static/releases/test/
 #create a test page
 test_page="<html>
    <head>
@@ -19,8 +18,12 @@ test_page="<html>
    </body>
 </html>"
 echo "$test_page" > /data/web_static/releases/test/index.html
-#create a symbolic link 
-ln -sf /data/web_static/releases/test /data/web_static/current
+#create a symbolic link
+if [ -L "/data/web_static/current" ]
+then
+  rm -f "/data/web_static/current"
+fi
+ln -s /data/web_static/releases/test/ /data/web_static/current
 #Give ownership of the /data/ folder to the ubuntu user and group
 chown -R ubuntu:ubuntu /data
 #Update the Nginx configuration to serve the content of
