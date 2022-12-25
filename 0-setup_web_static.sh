@@ -15,7 +15,7 @@ test_page="<html>
    <head>
    </head>
    <body>
-      Test Page
+      Holberton School
    </body>
 </html>"
 echo "$test_page" > /data/web_static/releases/test/index.html
