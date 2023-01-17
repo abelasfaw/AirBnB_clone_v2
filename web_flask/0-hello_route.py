@@ -6,8 +6,9 @@ app = Flask(__name__)
 
 @app.route('/', strict_slashes=False)
 def root_handler():
-   """returns Hello HBNB! when request hist / route"""
-   return 'Hello HBNB!'
+    """returns Hello HBNB! when request hist / route"""
+    return 'Hello HBNB!'
+
 
 if __name__ == "__main__":
-   app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=5000)
