@@ -19,7 +19,7 @@ def hbnb_handler():
 @app.route('/c/<text>')
 def c_handler(text):
     """returns C followed by the value of the text variable and
-	replaces underscore _ symbols with a space from <text>"""
+    replaces underscore _ symbols with a space from <text>"""
     return "C {}".format(text.replace('_', ' '))
 
 
