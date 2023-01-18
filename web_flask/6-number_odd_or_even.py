@@ -42,9 +42,12 @@ def number_template_handler(n):
     """renders an html page if n is an integer"""
     return render_template('5-number.html', value=n)
 
+
 @app.route('/number_odd_or_even/<int:n>', strict_slashes=False)
 def odd_or_even_handler(n):
     """renders an html page if n is an integer"""
-    return render_template('6-number_odd_or_even.html', value=n) 
+    return render_template('6-number_odd_or_even.html', value=n)
+
+
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)
